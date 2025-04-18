@@ -1,0 +1,14 @@
+services:
+  catalogue:
+    build: ./catalogue
+    ports:
+      - "8081:8081"
+
+  commande:
+    build: ./commande
+    ports:
+      - "8082:8082"
+    depends_on:
+      - catalogue
+    environment:
+      - CATALOGUE_URL=http://catalogue:8081
